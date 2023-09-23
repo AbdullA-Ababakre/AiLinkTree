@@ -7,7 +7,12 @@ export const questions = {
     },
     { question: "How would you describe your family?", type: "Descriptive" },
   ],
-  preference: [
+  interests: [
+    { question: "What are your hobbies?", type: "Descriptive" },
+    {
+      question: "Is there a sport or activity you're passionate about?",
+      type: "Preference-based",
+    },
     {
       question: "What's your favorite book and why?",
       type: "Preference-based",
@@ -41,13 +46,6 @@ export const questions = {
     {
       question: "Describe a time when you felt truly happy.",
       type: "Memory-based",
-    },
-  ],
-  interests: [
-    { question: "What are your hobbies?", type: "Descriptive" },
-    {
-      question: "Is there a sport or activity you're passionate about?",
-      type: "Preference-based",
     },
   ],
   future: [

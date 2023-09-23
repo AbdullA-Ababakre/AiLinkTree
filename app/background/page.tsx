@@ -1,41 +1,42 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./index.module.css";
 import InputItem from "../components/Input";
 import { questions as questionData } from "../../data/questions";
-import { Button, Form, Input } from 'antd';
+import { Button, Form } from 'antd';
 import { useRouter } from 'next/navigation'
 
 
 export default function Background() {
     const router = useRouter();
-
     const [answers, setAnswers] = useState<
         Array<{ question: string; answer: string }>
     >([]);
     const backgroundQuestionsArr = questionData["background"];
 
-    const [form] = Form.useForm();
+    const goNextPage = () => {
+        router.push('/interests');
+    }
 
+    const [form] = Form.useForm();
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        router.push('/interests');
     };
 
-    const goNextPage = () => {
-        router.push('/preference');
-    }
 
 
     return (
-        <div className={styles.container}>
-            <h1 className={styles.h1}>Personal Background</h1>
-            <Form
-                layout="vertical"
-                form={form}
-                style={{ maxWidth: 'none' }}
-                onFinish={onFinish}
-            >
+        <Form
+            layout="vertical"
+            form={form}
+            style={{ maxWidth: 'none' }}
+            onFinish={onFinish}
+            className={styles.formStyle}
+        >
+            <div className={styles.container}>
+                <h1 className={styles.h1}>Personal Background</h1>
                 {
                     backgroundQuestionsArr.map((item, index) => {
                         return (
@@ -44,13 +45,10 @@ export default function Background() {
                     })
                 }
                 <div className={styles.btns}>
-                    <Button>skip</Button>
-                    <Button>next</Button>
+                    <Button onClick={goNextPage}>skip</Button>
+                    <Button type="primary" htmlType="submit">next</Button>
                 </div>
-                {/* <Form.Item>
-                    <Button type="primary" htmlType="submit">Submit</Button>
-                </Form.Item> */}
-            </Form>
-        </div>
+            </div>
+        </Form>
     );
 }
