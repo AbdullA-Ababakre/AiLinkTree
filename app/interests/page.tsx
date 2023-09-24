@@ -6,7 +6,6 @@ import InputItem from "../components/Input/index";
 import { questions as questionData } from "../../data/questions";
 import { Button, Input, Form } from 'antd';
 import { useRouter } from 'next/navigation'
-import Link from 'next/link';
 
 
 export default function Interests() {
@@ -21,8 +20,16 @@ export default function Interests() {
     const [form] = Form.useForm();
 
 
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+    const onFinish = async (values: any) => {
+
+        const response = await fetch("/api/form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ interestsForm: values }),
+        });
+
         router.push('beliefs');
     };
 

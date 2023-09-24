@@ -5,18 +5,31 @@ import styles from "./index.module.css";
 import InputItem from "../components/Input/index";
 import { questions as questionData } from "../../data/questions";
 import { Button, Form } from 'antd';
+import { useRouter } from 'next/navigation'
 
 
 
 export default function Beliefs() {
+    const router = useRouter();
     const BeliefsQuestionsArr = questionData["beliefs"];
 
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
-        
+    const onFinish = async (values: any) => {
+        const response = await fetch("/api/form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ beliefsForm: values }),
+        });
+
+        router.push('social');
     };
+
+    const goNextPage = () => {
+        router.push('social');
+    }
 
 
     return (
@@ -36,11 +49,11 @@ export default function Beliefs() {
                         )
                     })
                 }
-                <Form.Item label="">
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                </Form.Item>
+                <div className={styles.btns}>
+                    <Button onClick={goNextPage}>skip</Button>
+                    <Button type="primary" htmlType="submit">next</Button>
+                </div>
+
             </div>
         </Form>
     );

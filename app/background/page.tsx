@@ -20,8 +20,17 @@ export default function Background() {
     }
 
     const [form] = Form.useForm();
-    const onFinish = (values: any) => {
-        console.log('Success:', values);
+
+    const onFinish = async (values: any) => {
+
+        const response = await fetch("/api/form", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ backgroundForm: values }),
+        });
+
         router.push('/interests');
     };
 
