@@ -1,5 +1,5 @@
 import React from "react";
-import { sourceCodePro } from "../styles/fonts";
+import { sourceCodePro } from "../styles/font";
 
 const PromptBox = ({
   prompt,

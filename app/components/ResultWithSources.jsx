@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
 const MessageItem = ({ message, pngFile, isLast }) => {
-  const userImage = "/assets/images/green-square.png";
-  const botImage = `/assets/images/${pngFile}.png`;
+  const userImage = "/assets/green-square.png";
+  const botImage = `/assets/${pngFile}.png`;
   const [showSources, setShowSources] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ const MessageItem = ({ message, pngFile, isLast }) => {
         </div>
         <p
           className={message.type === "user" ? "user" : "bot"}
-          style={{ maxWidth: "90%" }}
+          style={{ maxWidth: "90%",color:'black' }}
         >
           {message.text}
         </p>
@@ -56,7 +56,7 @@ const MessageItem = ({ message, pngFile, isLast }) => {
   );
 };
 
-const ResultWithSources = ({ messages, pngFile, maxMsgs }) => {
+const ResultWithSources = ({ messages, pngFile, maxMsgs = 5 }) => {
   const messagesContainerRef = useRef();
 
   useEffect(() => {
@@ -72,9 +72,11 @@ const ResultWithSources = ({ messages, pngFile, maxMsgs }) => {
   return (
     <div
       ref={messagesContainerRef}
-      className={`bg-white p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[500px] max-h-[500px] flex flex-col space-y-4 ${
+      className={`bg-white p-10 rounded-3xl shadow-lg mb-8 overflow-y-auto h-[700px] max-h-[800px] flex flex-col space-y-4 ${
         messages.length < maxMsgToScroll && "justify-end"
       }`}
+
+      style={{height:'800px'}}
     >
       {messages &&
         messages.map((message, index) => (

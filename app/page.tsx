@@ -3,7 +3,9 @@ import Image from "next/image";
 import { Button } from 'antd';
 import styles from './page.module.css'
 import AIGIF from '../public/AIgif.gif';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+
+
 
 export default function Home() {
   const router = useRouter();

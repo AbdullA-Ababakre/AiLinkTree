@@ -1,12 +1,9 @@
 "use client";
 
-import { ChangeEvent, useEffect, useState } from "react";
 import styles from "./index.module.css";
-import InputItem from "../components/Input/index";
-import { questions as questionData } from "../../data/questions";
-import { Button, Input, Form } from 'antd';
-import { useRouter } from 'next/navigation'
-import {Space, Toast } from 'antd-mobile';
+import { Button } from 'antd';
+import { useRouter } from 'next/navigation';
+import { Toast } from 'antd-mobile';
 
 
 export default function Social() {
